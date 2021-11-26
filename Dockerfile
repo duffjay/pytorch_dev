@@ -82,6 +82,7 @@ RUN sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8
 RUN sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.9 3
 RUN sudo update-alternatives  --set python /usr/bin/python3.8
 
+RUN sudo apt-get install -y graphviz
 
 RUN python -m pip install --upgrade pip
 
@@ -125,10 +126,17 @@ RUN pip install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0
 RUN ./anaconda3/bin/conda install matplotlib
 RUN ./anaconda3/bin/conda install -c conda-forge statsmodels
 RUN ./anaconda3/bin/conda install scikit-learn
+RUN ./anaconda3/bin/conda install pillow
+RUN ./anaconda3/bin/conda install python-dateutil
 
 RUN pip install pytorch-forecasting
+RUN pip install torchviz
+RUN pip install cupy-cuda113
 
 RUN ./anaconda3/bin/conda install jupyter
+# RUN ./anaconda3/bin/conda install ipykernel
+RUN pip install ipykernel
+RUN python -m ipykernel install --user --name=pytorch
 
 # RUN echo "*** finished - /project/docker/pytorch_dev"
 

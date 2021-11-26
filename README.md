@@ -1,6 +1,9 @@
 # pytorch_dev
 Docker build for pytorch dev
 
+## Books
+Time Series Forecasting using Deep Learning:   https://rebrand.ly/0a3411
+
 ## Dockerfile
 
 ### CUDA docker
@@ -15,7 +18,7 @@ start w/ nvidia/cuda    Go to Dockerhub, search nvidia/cuda look for all tags. Y
 
 ## Run
 
-`docker run -it --runtime=nvidia \
+docker run -it --runtime=nvidia \
 --user=jay \
 --gpus all \
 --volume=/project:/project \
@@ -23,6 +26,11 @@ start w/ nvidia/cuda    Go to Dockerhub, search nvidia/cuda look for all tags. Y
 --volume=/home/$USER/.aws:/home/$USER/.aws \
 --network host \
 --env=DISPLAY --volume=$HOME/.Xauthority:/root/.Xauthority \
+--name=pytorch \
 pytorch_dev \
-bash`
+bash
+
+## Exec
+
+docker exec -it pytorch bash
 
